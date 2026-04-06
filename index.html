@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ავტორიზაცია</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="login-card">
+    <h1>ავტორიზაცია</h1>
+    <form id="loginForm">
+      <label for="username">მომხმარებლის სახელი</label>
+      <input type="text" id="username" name="username" required placeholder="საბა1213" />
+
+      <label for="email">ელ. ფოსტა</label>
+      <input type="email" id="email" name="email" required placeholder="jekodoija@gmail.com" />
+
+      <button type="submit">შესვლა</button>
+    </form>
+    <p id="message"></p>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const message = document.getElementById('message');
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const username = form.username.value.trim();
+      const email = form.email.value.trim();
+
+      if (!username || !email) {
+        message.textContent = 'გთხოვთ შეიყვანოთ მომხმარებლის სახელი და ელ. ფოსტა.';
+        message.style.color = '#d32f2f';
+        return;
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        message.textContent = 'გთხოვთ სწორად მიუთითოთ ელ. ფოსტა.';
+        message.style.color = '#d32f2f';
+        return;
+      }
+
+      message.textContent = `გამარჯობა, ${username}! ავტორიზაცია წარმატებულია.`;
+      message.style.color = '#2e7d32';
+    });
+  </script>
+</body>
+</html>
